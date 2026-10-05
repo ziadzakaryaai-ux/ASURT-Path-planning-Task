@@ -4,7 +4,6 @@ import argparse
 import os
 import sys
 
-# Ensure project root is on sys.path when running as a script: e.g., `python src/run.py`
 _CURRENT_DIR = os.path.dirname(__file__)
 _PROJECT_ROOT = os.path.abspath(os.path.join(_CURRENT_DIR, os.pardir))
 if _PROJECT_ROOT not in sys.path:

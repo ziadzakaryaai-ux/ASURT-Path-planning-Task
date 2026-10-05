@@ -5,10 +5,10 @@ from typing import List, Tuple
 
 from src.models import CarPose, Cone, Path2D
 
-STEP = 0.25       # spacing between consecutive path points (m); must be <= 0.5
-TARGET_LEN = 6.0  # aim for a ~6 m path (requirement: between 5 and 10 m)
+STEP = 0.25
+TARGET_LEN = 6.0
 MAX_LEN = 10.0
-SIDE_OFFSET = 0.75  # lateral clearance kept from a visible boundary (m)
+SIDE_OFFSET = 0.75
 
 
 class PathPlanning:
@@ -62,8 +62,6 @@ class PathPlanning:
             path = self._truncate(path, MAX_LEN)
         return [to_world(x, y) for x, y in path]
 
-    # -- helpers ---------------------------------------------------------
-
     def _gates(self, blues, yellows) -> List[Tuple[float, float]]:
         if blues and yellows:
             gates = []
@@ -85,8 +83,6 @@ class PathPlanning:
         return []
 
     def _side_only_gates(self, side) -> List[Tuple[float, float]]:
-        # Only one boundary side is visible: keep the path parallel to it,
-        # offset toward the car's side of that boundary.
         if len(side) == 1:
             ref = side[0]
             lateral = -SIDE_OFFSET if ref[1] > 0 else SIDE_OFFSET
@@ -95,13 +91,13 @@ class PathPlanning:
         ux, uy = x1 - x0, y1 - y0
         d = math.hypot(ux, uy) or 1.0
         ux, uy = ux / d, uy / d
-        t = -x0 * ux - y0 * uy          # car (origin) projected onto the line
+        t = -x0 * ux - y0 * uy
         px, py = x0 + t * ux, y0 + t * uy
-        nx, ny = -uy, ux                # unit normal
-        if nx * px + ny * py > 0.0:     # flip so it points toward the car
+        nx, ny = -uy, ux
+        if nx * px + ny * py > 0.0:
             nx, ny = -nx, -ny
         ox, oy = px + SIDE_OFFSET * nx, py + SIDE_OFFSET * ny
-        dirx, diry = (ux, uy) if ux >= 0.0 else (-ux, -uy)  # align with yaw
+        dirx, diry = (ux, uy) if ux >= 0.0 else (-ux, -uy)
         ext = max(0.0, TARGET_LEN - math.hypot(ox, oy))
         return [(ox, oy), (ox + dirx * ext, oy + diry * ext)]
 

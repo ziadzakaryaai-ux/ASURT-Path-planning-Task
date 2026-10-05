@@ -14,7 +14,7 @@ class Cone:
 
     x: float
     y: float
-    color: int  # 0 = yellow (right), 1 = blue (left)
+    color: int
 
 
 @dataclass(frozen=True)
@@ -23,8 +23,7 @@ class CarPose:
 
     x: float
     y: float
-    yaw: float  # heading in radians, 0 along +x, pi/2 along +y
+    yaw: float
 
 
-# Public type alias for a path: list of 2D points in world frame
 Path2D = List[Tuple[float, float]]

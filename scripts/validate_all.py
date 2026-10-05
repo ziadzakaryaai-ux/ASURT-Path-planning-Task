@@ -28,7 +28,6 @@ OUT_DIR = os.path.join(_PROJECT_ROOT, "output")
 MAX_STEP = 0.5
 MIN_LEN, MAX_LEN = 5.0, 10.0
 
-# Showcase set: classic gates, hard stray-cone case, boundary-only, Part 2.
 TOP_SCENARIOS = ["3", "10", "11", "13", "21", "24"]
 
 

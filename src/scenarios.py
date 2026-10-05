@@ -137,9 +137,7 @@ _SCENARIOS: Dict[str, Tuple[List[Cone], CarPose]] = {
         CarPose(x=0.0, y=0.0, yaw=1.8),
     ),
 
-    # --- Part 2: three cones on one side of the track --------------------
     "21": (
-        # 3 blue (left) + 2 yellow (right): extra blue cone further ahead.
         [
             Cone(x=1.0, y=3.0, color=1),
             Cone(x=3.0, y=3.0, color=1),
@@ -151,7 +149,6 @@ _SCENARIOS: Dict[str, Tuple[List[Cone], CarPose]] = {
     ),
 
     "22": (
-        # 3 blue + 1 yellow: only one gate can be formed.
         [
             Cone(x=1.0, y=3.0, color=1),
             Cone(x=3.0, y=3.0, color=1),
@@ -162,7 +159,6 @@ _SCENARIOS: Dict[str, Tuple[List[Cone], CarPose]] = {
     ),
 
     "23": (
-        # 2 blue + 3 yellow: extra yellow cone behind the nearest gate.
         [
             Cone(x=1.0, y=4.0, color=1),
             Cone(x=4.0, y=3.0, color=1),
@@ -174,7 +170,6 @@ _SCENARIOS: Dict[str, Tuple[List[Cone], CarPose]] = {
     ),
 
     "24": (
-        # 3 blue, no yellow: boundary-only case with three cones.
         [
             Cone(x=2.0, y=3.0, color=1),
             Cone(x=4.0, y=4.0, color=1),
